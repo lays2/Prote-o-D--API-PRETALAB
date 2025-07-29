@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import authRoutes from './Prote-o-D--API-PRETALAB/src/routes/authRoutes';
+import authRoutes from './routes/authRoutes';
 import bookRoutes from './routes/bookRoutes';
 import { connectDB } from './database/database';
 
