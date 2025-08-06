@@ -1,0 +1,32 @@
+name: Deploy da API para Render
+
+on:
+  push:
+    branches:
+      - main  # só faz o deploy quando há push na branch main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Rodar testes
+        run: npm run test
+
+      - name: Compilar código
+        run: npm run build
+
+      - name: Deploy para Render
+        run: |
+          curl -X POST https://api.render.com/deploy/srv-XXXXXXXX?key=${{ secrets.RENDER_API_KEY }}

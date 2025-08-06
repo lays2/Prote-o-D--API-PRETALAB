@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name:pretalab-api
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: JWT_SECRET
+        from: secret
+        value: JWT_SECRET
+      - key: DATABASE_URL
+        value: ${DATABASE_URL}
+      - key: PORT
+        value: 3000
